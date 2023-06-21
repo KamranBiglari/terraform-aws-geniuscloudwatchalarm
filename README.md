@@ -1,3 +1,31 @@
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/KamranBiglari/terraform-aws-geniuscloudwatchalarm)](https://github.com/KamranBiglari/terraform-aws-geniuscloudwatchalarm/releases/latest)
+
+# terraform-aws-geniuscloudwatchalarm
+A Terraform module to create multiple dynamic AWS Cloudwatch Alamrs by using YAML
+
+## Usage
+```
+module "cloudwatch-monitor" {
+  source  = "KamranBiglari/geniuscloudwatchalarm/aws"
+  version = "~> 1.0"
+  input = "${path.module}/cloudwatch.yaml"
+  alarm_name_prefix = "cloudwatch-monitor"
+  current_environment = "dev"
+  template_data = {
+    
+  }
+  alarm_actions = {
+    default = {
+      alarm = ""
+      ok = ""
+    }
+  }
+}
+```
+
+## Examples
+- 
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
