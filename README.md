@@ -24,7 +24,7 @@ module "cloudwatch-monitor" {
 ```
 
 ## Examples
-- 
+- https://github.com/KamranBiglari/terraform-aws-geniuscloudwatchalarm/tree/main/example
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
