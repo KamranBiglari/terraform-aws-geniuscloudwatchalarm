@@ -1,0 +1,68 @@
+Cloudwatch:
+  - Name: redis-connections
+    Status: 1
+    Description: Exeeded 250 average elasticache current connections.
+    Namespace: AWS/ElastiCache
+    Metrics: CurrConnections
+    Dimensions:
+      - Name:
+        Value:
+    Query: 
+      - label: "expression redis cluster"
+        expression: MAX(METRICS())
+        return_data: true
+%{ for nodeK,nodeV in rediscluster ~}
+      - label: "metric redis cluster ${nodeV}"
+        metric: 
+          namespace: AWS/ElastiCache
+          metric_name: CurrConnections
+          period: 60
+          stat: Average
+          dimensions: 
+            CacheClusterId: ${nodeV}
+%{ endfor ~}          
+    EvaluationPeriods: 2
+    Period: 60
+    Operator: GreaterThanOrEqualToThreshold
+    Statistic: Average
+    Unit:
+    Threshold: 250
+    TreatMissingData: breaching
+    AlarmActions:
+      OK: 
+        default: 
+          prod: critical 
+      ALARM:
+        default: 
+          dev: critical
+          
+    Environment: 
+      - dev
+      - prod
+
+  - Name: redis-memory
+    Status: 1
+    Description: average elasticache database memory over 30%.
+    Namespace: AWS/ElastiCache
+    Metrics: DatabaseMemoryUsagePercentage
+    Dimensions:
+      - Name:
+        Value:
+    EvaluationPeriods: 2
+    Period: 60
+    Operator: GreaterThanOrEqualToThreshold
+    Statistic: Average
+    Unit:
+    Threshold: 30
+    TreatMissingData: breaching
+    AlertLevel: warn
+    AlarmActions:
+      OK: 
+        default: 
+          dev: critical
+      ALARM:
+        default: 
+          dev: critical
+    Environment: 
+      - dev
+      - prod
