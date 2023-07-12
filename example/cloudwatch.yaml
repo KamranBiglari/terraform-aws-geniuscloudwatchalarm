@@ -66,3 +66,33 @@ Cloudwatch:
     Environment: 
       - dev
       - prod
+
+  - Name: websocket-subscriptions
+    Status: 1
+    Description: Check websocket subscriptions.
+    Namespace: cryptofeed/websocketmonitoring
+    Metrics: SubscribeCount
+    CustomMetrics: 
+      Patten: '{$.level = "INFO" && $.message = "Subscribed*"}'
+      LogGroupName: ${websocketmonitoring.log_group_name}
+    Dimensions:
+      - Name:
+        Value:
+    EvaluationPeriods: 2
+    Period: 60
+    Operator: LessThanOrEqualToThreshold
+    Statistic: Sum
+    Unit:
+    Threshold: 30
+    TreatMissingData: breaching
+    AlertLevel: critical
+    AlarmActions:
+      OK: 
+        default: 
+          dev: critical
+      ALARM:
+        default: 
+          dev: critical
+    Environment: 
+      - dev
+      - prod

@@ -42,7 +42,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_metric-alarm"></a> [metric-alarm](#module\_metric-alarm) | terraform-aws-modules/cloudwatch/aws//modules/metric-alarm | ~> 4.0 |
+| <a name="module_metric-alarm"></a> [metric-alarm](#module\_metric-alarm) | terraform-aws-modules/cloudwatch/aws//modules/log-metric-filter | ~> 4.0 |
 
 ## Resources
 
@@ -56,8 +56,8 @@ No resources.
 | <a name="input_alarm_name_prefix"></a> [alarm\_name\_prefix](#input\_alarm\_name\_prefix) | Prefix of alarm name | `string` | n/a | yes |
 | <a name="input_current_environment"></a> [current\_environment](#input\_current\_environment) | Current environment | `string` | n/a | yes |
 | <a name="input_input"></a> [input](#input\_input) | Path to yaml file | `string` | n/a | yes |
-| <a name="input_loop"></a> [loop](#input\_loop) | n/a | `map` | `{}` | no |
-| <a name="input_template_data"></a> [template\_data](#input\_template\_data) | values to replace in template | `map` | `{}` | no |
+| <a name="input_loop"></a> [loop](#input\_loop) | n/a | `map(any)` | `{}` | no |
+| <a name="input_template_data"></a> [template\_data](#input\_template\_data) | values to replace in template | `map(any)` | `{}` | no |
 
 ## Outputs
 
