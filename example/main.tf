@@ -5,12 +5,18 @@ module "cloudwatch-monitor" {
   current_environment = "dev"
   template_data = {
     rediscluster = {}
-    websocketmonitoring = module.websocketmonitoring #
+    websocketmonitoring = module.websocketmonitoring
   }
   alarm_actions = {
     default = {
-      alarm = ""
-      ok = ""
+      alarm = {
+        critical = ["arn:aws:sns:us-east-1:123456789012:critical"]
+        warning = ["arn:aws:sns:us-east-1:123456789012:critical"]
+      }
+      ok = {
+        critical = ["arn:aws:sns:us-east-1:123456789012:critical"]
+        warning = ["arn:aws:sns:us-east-1:123456789012:critical"]
+      }
     }
   }
 }

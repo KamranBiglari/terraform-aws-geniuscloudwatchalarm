@@ -83,16 +83,16 @@ module "metric-alarm" {
 
   actions_enabled = can(each.value.Config.AlarmActions) ? true : false
   alarm_actions = [for aK, aV in each.value.Config.AlarmActions.ALARM :
-    try(var.alarm_actions[aK]["alarm"][aV[var.current_environment]].arn, "")
-    if can(var.alarm_actions[aK]["alarm"][aV[var.current_environment]].arn)
+    try(var.alarm_actions[aK]["alarm"][aV[var.current_environment]], "")
+    if can(var.alarm_actions[aK]["alarm"][aV[var.current_environment]])
   ]
   ok_actions = [for aK, aV in each.value.Config.AlarmActions.OK :
-    try(var.alarm_actions[aK]["ok"][aV[var.current_environment]].arn, "")
-    if can(var.alarm_actions[aK]["ok"][aV[var.current_environment]].arn)
+    try(var.alarm_actions[aK]["ok"][aV[var.current_environment]], "")
+    if can(var.alarm_actions[aK]["ok"][aV[var.current_environment]])
   ]
 
   depends_on = [ module.log-metric-filter ]
-  
+
 }
 
 #CloudWatch Custom Metrics
