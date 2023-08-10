@@ -93,7 +93,7 @@ module "metric-alarm" {
 }
 
 #CloudWatch Custom Metrics
-module "metric-alarm" {
+module "log-metric-filter" {
   source  = "terraform-aws-modules/cloudwatch/aws//modules/log-metric-filter"
   version = "~> 4.0"
   for_each = { for i in flatten([
