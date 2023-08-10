@@ -90,6 +90,9 @@ module "metric-alarm" {
     try(var.alarm_actions[aK]["ok"][aV[var.current_environment]].arn, "")
     if can(var.alarm_actions[aK]["ok"][aV[var.current_environment]].arn)
   ]
+
+  depends_on = [ module.log-metric-filter ]
+  
 }
 
 #CloudWatch Custom Metrics

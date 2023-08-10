@@ -42,7 +42,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_metric-alarm"></a> [metric-alarm](#module\_metric-alarm) | terraform-aws-modules/cloudwatch/aws//modules/log-metric-filter | ~> 4.0 |
+| <a name="module_log-metric-filter"></a> [log-metric-filter](#module\_log-metric-filter) | terraform-aws-modules/cloudwatch/aws//modules/log-metric-filter | ~> 4.0 |
+| <a name="module_metric-alarm"></a> [metric-alarm](#module\_metric-alarm) | terraform-aws-modules/cloudwatch/aws//modules/metric-alarm | ~> 4.0 |
 
 ## Resources
 
