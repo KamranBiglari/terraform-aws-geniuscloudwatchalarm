@@ -9,7 +9,7 @@ variable "input" {
 }
 
 variable "loop" {
-  type    = map(any)
+  type    = any
   default = {}
 }
 
@@ -19,7 +19,7 @@ variable "current_environment" {
 }
 
 variable "template_data" {
-  type        = map(any)
+  type        = any
   description = "values to replace in template"
   default     = {}
 }
@@ -60,7 +60,7 @@ module "metric-alarm" {
   namespace   = can(each.value.Config.Query) ? null : each.value.Config.Namespace
   metric_name = can(each.value.Config.Query) ? null : each.value.Config.Metrics
   statistic   = can(each.value.Config.Query) ? null : each.value.Config.Statistic
-  dimensions  = can(each.value.Config.Query) ? null : try(tomap(each.value.Config.Dimensions), {})
+  dimensions = can(each.value.Config.Query) ? null : try({for dK,dV in try(each.value.Config.Dimensions,{}) : dV.Name => dV.Value},{})
   period      = can(each.value.Config.Query) ? null : each.value.Config.Period
   metric_query = can(each.value.Config.Query) ? [for qK, qV in each.value.Config.Query : {
     id          = (can(qV.expression)) ? "e${qK}" : "m${qK}"
