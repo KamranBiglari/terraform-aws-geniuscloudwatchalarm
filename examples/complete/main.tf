@@ -1,5 +1,5 @@
 module "cloudwatch-monitor" {
-  source  = "../"
+  source  = "../../"
   input = "${path.module}/cloudwatch.yaml"
   alarm_name_prefix = "cloudwatch-monitor"
   current_environment = "dev"
